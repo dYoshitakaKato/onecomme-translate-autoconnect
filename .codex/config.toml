@@ -1,0 +1,12 @@
+# ローカルCodexのサンドボックス内で、指定した秘密情報のパスを読み書き禁止にする。
+# 信頼済みプロジェクトで利用する。旧 sandbox_mode / sandbox_workspace_write と併用しない。
+# GitHub・MCP、環境変数、Git履歴や別コピーには、このパス制限だけでは適用されない。
+# https://learn.chatgpt.com/docs/permissions
+default_permissions = "project-secrets-denied"
+
+[permissions.project-secrets-denied]
+extends = ":workspace"
+
+[permissions.project-secrets-denied.filesystem.":workspace_roots"]
+".env" = "deny"
+"secrets" = "deny"
